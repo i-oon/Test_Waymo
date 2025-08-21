@@ -12,6 +12,16 @@
 - [Best Evaluation at epoch 21 (12/8/25)](log_data\best_eval_record.txt)
 
 
+
+
+## Training Loss
+  - sampling with 100 loss data per epoch (1-29 epoch)
+![Training Loss with Tread](log_data/Training_loss_with_trend%20(Cleaned).svg)
+- Total iterations: 2900 ()
+- Loss range: -242.095000 to 113454.273000
+- Mean loss: 448.810496
+- Std loss: 3142.328200
+
 ## Performance on the validation set of Waymo Open Motion Dataset
 |  Model  |  Training Set | minADE | minFDE | Miss Rate | mAP |
 |---------|----------------|--------|--------|--------|--------|
@@ -19,7 +29,7 @@
 |self_train+100%_data| 100%           | 1.6081  | 3.3691 | 0.4232 | 0.1715 |
 
 
-## Self-train Testing
+## Self-train Models Testing
 | Metric | best_model | latest_model | at 30_epoch |
 |--------|----------------|-------------------|------------------|
 | minADE | 1.6081          | 1.4284            | 3.4769           |
