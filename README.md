@@ -15,10 +15,8 @@
 ## Performance on the validation set of Waymo Open Motion Dataset
 |  Model  |  Training Set | minADE | minFDE | Miss Rate | mAP |
 |---------|----------------|--------|--------|--------|--------|
-|[MTR_mtr+20%_data](model\original_from_mtr\mtr+20_percent_data.yaml) | 20%            | 0.6697 | 1.3712 | 0.1668 | 0.3437 |
-|self_train+20%_data | 20%            | 0.6697 | 1.3712 | 0.1668 | 0.3437 |
-|[MTR_mtr+100%_data](model\original_from_mtr\mtr+100_percent_data.yaml)| 100%           | 0.6046 | 1.2251 | 0.1366 | 0.4164 |
-|self_train+100%_data (still didn't)| 100%           | 0.6046 | 1.2251 | 0.1366 | 0.4164 |
+|MTR_mtr+100%_data | 100%           | 0.6046 | 1.2251 | 0.1366 | 0.4164 |
+|self_train+100%_data| 100%           | 1.6081  | 3.3691 | 0.4232 | 0.1715 |
 
 
 ## Self-train Testing
@@ -62,12 +60,13 @@ python train.py --cfg_file cfgs/waymo/mtr+100_percent_data.yaml --batch_size 1 -
 # --------------------------------- TEST ------------------------------------------
 (handling the GPU as same as the train step)
 
-- use this "python test.py \\
-  --cfg_file cfgs/waymo/mtr+100_percent_data.yaml \\
-  --ckpt ../output/waymo/mtr+100_percent_data/my_first_exp/ckpt/best_model.pth \\
+- use this "python test.py \
+  --cfg_file cfgs/waymo/mtr+100_percent_data.yaml \
+  --ckpt ../output/waymo/mtr+100_percent_data/my_first_exp/ckpt/best_model.pth \
   --batch_size 1"
 - in test.py, usually just loads the "best_model.pth" into the model code but there are some other ways
 - in test.py, 1. eval_single_ckpt() (only best_model.pth) gives final performance of how well of the trained model
 2. repeat_eval_ckpt() (multiple checkpoint) shows how better the model gets over checkpoints (only do this if wanting to debug the way you train)
-		  
+- sometimes best_model.pth does not give the best result at mAP, it could be the latest_model that is the highest, just haven't been evaluated yet
+	      
 ```
