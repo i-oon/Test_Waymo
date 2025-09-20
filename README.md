@@ -38,6 +38,125 @@
 | mAP    | 0.1715          | 0.1808            | 0.0946           |
 
 
+## Input Data Structure
+based on preprocessing script of tfrecord to .pkl 
+1. decode_tracks_from_proto [mtr/datasets/waymo/data_preprocess.py]
+```
+  : Output track_infos = 
+    - 'object_id': List of agent IDs
+    - 'object_type': List of agent types (vehicle, pedestrian, etc.)
+    - 'trajs': Array of shape (num_objects, num_timestamps, 10)
+  
+    For each agent at each timestep: 
+    * where 10 is info related to center agent
+    trajectory_point = [
+        center_x,     # global X position (meters)
+        center_y,     # global Y position (meters) 
+        center_z,     # global Z position (meters)
+        length,       # bounding box length (meters)
+        width,        # bounding box width (meters)
+        height,       # bounding box height (meters)
+        heading,      # orientation angle (radians, global frame)
+        velocity_x,   # velocity in X direction (m/s, global frame)
+        velocity_y,   # velocity in Y direction (m/s, global frame)
+        valid         # flag (1.0 = valid observation, 0.0 = missing/invalid data)
+    ]
+```
+
+2. decode_map_features_from_proto [mtr/datasets/waymo/data_preprocess.py]
+    - map_infos = {'all_polylines': np.array([...]),  # Shape: (total_map_points, 7)
+```
+    * Categorized map elements with metadata:
+      'lane': [{'id':,'speed_limit_mph':,'type':,'interpolating':,'entry_lanes':,'exit_lanes':,   
+               'left_boundary':,'right_boundary':,'polyline_index':}, ...],
+      'road_line': [{'id':,'type':,'polyline_index':}, ...],
+      'road_edge': [{'id':,'type':, 'polyline_index':}, ...],
+      'stop_sign': [{'id':,'lane_ids':,'position':'polyline_index':}, ...],
+      'crosswalk': [{'id':,'polyline_index':}, ...],
+      'speed_bump': [{'id':,'polyline_index':}, ...]}
+
+    Each point in all_polylines array:
+    map_point = [
+        x,           # Global X position (meters)
+        y,           # Global Y position (meters)
+        z,           # Global Z position (meters)
+        dir_x,       # Direction vector X component (normalized)
+        dir_y,       # Direction vector Y component (normalized) 
+        dir_z,       # Direction vector Z component (normalized)
+        global_type  # Integer type ID (from waymo_types.py polyline_type)
+    ]
+```
+
+3. process_waymo_data_with_scenario_proto [mtr/datasets/waymo/data_preprocess.py]
+```
+  : Main processing function for each .tfrecord containing multiple scenarios to individual .pkl files per scenario
+    - Reads TensorFlow records
+    - Parses scenario protobuf data
+    - Extracts tracks, map, and metadata
+    - Saves each scenario as individual .pkl file
+    - Output: sample_SCENARIO_ID.pkl files
+```
+```
+TREE : 
+  Preprocessing (.tfrecord → .pkl):
+  ├── Agent trajectories: GLOBAL coordinates (10D)
+  ├── Map polylines: GLOBAL coordinates (7D)
+  └── Metadata: scenario info, prediction targets
+
+  Training Pipeline (waymo_dataset.py):
+  ├── Transform to CENTER AGENT coordinates
+  ├── Agent features: 10D → 29D (add time, type, heading encoding)
+  ├── Map features: 7D → 9D (add prev_x, prev_y)
+  └── Feed to model
+```
+## Single Scenerio Structure
+```
+scenario_data = {
+    #  METADATA 
+    'scenario_id': 'scenario_123',
+    'timestamps_seconds': [0.0, 0.1, 0.2, ..., 9.0],  # 91 timesteps (9.1 seconds)
+    'current_time_index': 10,  # Split: 0-10 past, 11-90 future
+    'sdc_track_index': 0,  # Which agent is the self-driving car
+    'objects_of_interest': [],  # Special objects (usually empty)
+
+    # PREDICTION TARGETS
+    'tracks_to_predict': {
+        'track_index': [1, 2, 5],  # Which agents to predict
+        'difficulty': [1, 2, 1],   # Prediction difficulty level (1=easy, 5=hard)
+        'object_type': ['TYPE_VEHICLE', 'TYPE_VEHICLE', 'TYPE_PEDESTRIAN']
+    },
+
+     # AGENT TRAJECTORIES 
+    'track_infos': {
+        'object_id': [101, 102, 103, ...],  
+        'object_type': ['TYPE_VEHICLE', 'TYPE_PEDESTRIAN', ...],
+        'trajs': np.array([...])  # (num_agents, 91_timesteps, 10)
+        # GLOBAL coordinates: [x, y, z, length, width, height, heading, vx, vy, valid]
+    },
+
+    # HD MAP DATA
+    'map_infos': {
+        'all_polylines': np.array([...]),  # (num_points, 7)
+        # GLOBAL coordinates: [x, y, z, dir_x, dir_y, dir_z, global_type]
+        
+        'lane': [{'id': ..., 'speed_limit_mph': ..., 'type': ..., 'polyline_index': (start, end)}, ...],
+        'road_line': [{'id': ..., 'type': ..., 'polyline_index': (start, end)}, ...],
+        'road_edge': [{'id': ..., 'type': ..., 'polyline_index': (start, end)}, ...],
+        'stop_sign': [{'id': ..., 'position': [x, y, z], 'lane_ids': [...], 'polyline_index': (start, end)}, ...],
+        'crosswalk': [{'id': ..., 'polyline_index': (start, end)}, ...],
+        'speed_bump': [{'id': ..., 'polyline_index': (start, end)}, ...]
+    },
+    # DYNAMIC TRAFFIC SIGNALS
+    'dynamic_map_infos': {
+        'lane_id': [...],    # Traffic signal lane IDs per timestep
+        'state': [...],      # Signal states per timestep  
+        'stop_point': [...]  # Stop point positions per timestep
+    }
+}
+```
+
+
+
 ### MTR's Guideline
 ```bash
 # --------------------------------- PRE-PROCRESS ---------------------------------
