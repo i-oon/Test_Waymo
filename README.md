@@ -10,9 +10,9 @@
 - [Test result of check point at 30th epoch (12/8/25)](log_data\log_eval_20250815-190435.txt)
 - [Test result of Latest Model (12/8/25)](log_data\log_eval_20250815-Latest_Model.txt)
 - [Best Evaluation at epoch 21 (12/8/25)](log_data\best_eval_record.txt)
+  
 
-
-
+## MAP Graph 
 
 ## Training Loss
   - sampling with 100 loss data per epoch (1-29 epoch)
@@ -27,6 +27,8 @@
 |---------|----------------|--------|--------|--------|--------|
 |MTR_mtr+100%_data | 100%           | 0.6046 | 1.2251 | 0.1366 | 0.4164 |
 |self_train+100%_data| 100%           | 1.6081  | 3.3691 | 0.4232 | 0.1715 |
+
+
 
 
 ## Self-train Models Testing
@@ -176,6 +178,7 @@ python data_preprocess.py ../../../data/waymo/scenario/  ../../../data/waymo"
 - to avoid the conflict, and gpu size use command "cd tools
 python train.py --cfg_file cfgs/waymo/mtr+100_percent_data.yaml --batch_size 1 --epochs 30 --extra_tag my_first_exp", this should start training the "processed_scenarios_training" folder
 - train.py handles setup and configuration, train_utils.py contains core training loops.
+- max checkpoint can be changed in train.py -> parser.add_argument('--max_ckpt_save_num', type=int, default=5, help='max number of saved checkpoint')
 
 ---------- VALIDATION (happens during training) ---------
 - when each epoch is done, it will auto-validate with "processed_scenarios_validation" folder just to monitor the progress if it's getting any better

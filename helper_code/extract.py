@@ -154,7 +154,7 @@ if __name__ == "__main__":
         # Interactive input
         log_file = input("Enter the path to your log file: ").strip()
         if not log_file:
-            log_file = r"C:\Test_Waymo\log_data\log_train_20250812-153151.txt"  # Default
+            log_file = r"C:\Test_Waymo\log_data\log_train_20250920-epoch0.txt"  # Default
         
         output_file = input("Enter output file name (default: Loss_extract.txt): ").strip()
         if not output_file:

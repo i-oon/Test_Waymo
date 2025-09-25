@@ -1,0 +1,396 @@
+2025-09-25 18:23:12,395   INFO  **********************Start logging**********************
+2025-09-25 18:23:12,395   INFO  CUDA_VISIBLE_DEVICES=ALL
+2025-09-25 18:23:12,395   INFO  cfg_file         cfgs/waymo/mtr+100_percent_data.yaml
+2025-09-25 18:23:12,395   INFO  batch_size       1
+2025-09-25 18:23:12,395   INFO  workers          4
+2025-09-25 18:23:12,395   INFO  extra_tag        default
+2025-09-25 18:23:12,395   INFO  ckpt             ../output/waymo/mtr+100_percent_data/my_first_exp/ckpt/checkpoint_epoch_29.pth
+2025-09-25 18:23:12,395   INFO  launcher         none
+2025-09-25 18:23:12,395   INFO  tcp_port         18888
+2025-09-25 18:23:12,395   INFO  local_rank       0
+2025-09-25 18:23:12,395   INFO  fix_random_seed  False
+2025-09-25 18:23:12,395   INFO  set_cfgs         None
+2025-09-25 18:23:12,395   INFO  max_waiting_mins 30
+2025-09-25 18:23:12,395   INFO  start_epoch      0
+2025-09-25 18:23:12,395   INFO  eval_tag         default
+2025-09-25 18:23:12,395   INFO  eval_all         False
+2025-09-25 18:23:12,395   INFO  ckpt_dir         None
+2025-09-25 18:23:12,395   INFO  save_to_file     False
+2025-09-25 18:23:12,395   INFO  cfg.ROOT_DIR: /home/ioon/MTR
+2025-09-25 18:23:12,395   INFO  cfg.LOCAL_RANK: 0
+2025-09-25 18:23:12,395   INFO  
+cfg.DATA_CONFIG = edict()
+2025-09-25 18:23:12,395   INFO  cfg.DATA_CONFIG.DATASET: WaymoDataset
+2025-09-25 18:23:12,395   INFO  cfg.DATA_CONFIG.OBJECT_TYPE: ['TYPE_VEHICLE', 'TYPE_PEDESTRIAN', 'TYPE_CYCLIST']
+2025-09-25 18:23:12,395   INFO  cfg.DATA_CONFIG.DATA_ROOT: data/waymo
+2025-09-25 18:23:12,395   INFO  
+cfg.DATA_CONFIG.SPLIT_DIR = edict()
+2025-09-25 18:23:12,395   INFO  cfg.DATA_CONFIG.SPLIT_DIR.train: processed_scenarios_training
+2025-09-25 18:23:12,395   INFO  cfg.DATA_CONFIG.SPLIT_DIR.test: processed_scenarios_validation
+2025-09-25 18:23:12,395   INFO  
+cfg.DATA_CONFIG.INFO_FILE = edict()
+2025-09-25 18:23:12,395   INFO  cfg.DATA_CONFIG.INFO_FILE.train: processed_scenarios_training_infos.pkl
+2025-09-25 18:23:12,395   INFO  cfg.DATA_CONFIG.INFO_FILE.test: processed_scenarios_val_infos.pkl
+2025-09-25 18:23:12,396   INFO  
+cfg.DATA_CONFIG.SAMPLE_INTERVAL = edict()
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.SAMPLE_INTERVAL.train: 1
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.SAMPLE_INTERVAL.test: 1
+2025-09-25 18:23:12,396   INFO  
+cfg.DATA_CONFIG.INFO_FILTER_DICT = edict()
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.INFO_FILTER_DICT.filter_info_by_object_type: ['TYPE_VEHICLE', 'TYPE_PEDESTRIAN', 'TYPE_CYCLIST']
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.POINT_SAMPLED_INTERVAL: 1
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.NUM_POINTS_EACH_POLYLINE: 20
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.VECTOR_BREAK_DIST_THRESH: 1.0
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.NUM_OF_SRC_POLYLINES: 768
+2025-09-25 18:23:12,396   INFO  cfg.DATA_CONFIG.CENTER_OFFSET_OF_MAP: [30.0, 0]
+2025-09-25 18:23:12,396   INFO  
+cfg.MODEL = edict()
+2025-09-25 18:23:12,396   INFO  
+cfg.MODEL.CONTEXT_ENCODER = edict()
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NAME: MTREncoder
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_OF_ATTN_NEIGHBORS: 16
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_INPUT_ATTR_AGENT: 29
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_INPUT_ATTR_MAP: 9
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_CHANNEL_IN_MLP_AGENT: 256
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_CHANNEL_IN_MLP_MAP: 64
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_LAYER_IN_MLP_AGENT: 3
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_LAYER_IN_MLP_MAP: 5
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_LAYER_IN_PRE_MLP_MAP: 3
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.D_MODEL: 256
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_ATTN_LAYERS: 6
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_ATTN_HEAD: 8
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.DROPOUT_OF_ATTN: 0.1
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.CONTEXT_ENCODER.USE_LOCAL_ATTN: True
+2025-09-25 18:23:12,396   INFO  
+cfg.MODEL.MOTION_DECODER = edict()
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NAME: MTRDecoder
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.OBJECT_TYPE: ['TYPE_VEHICLE', 'TYPE_PEDESTRIAN', 'TYPE_CYCLIST']
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.CENTER_OFFSET_OF_MAP: [30.0, 0]
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NUM_FUTURE_FRAMES: 80
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NUM_MOTION_MODES: 6
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.INTENTION_POINTS_FILE: data/waymo/cluster_64_center_dict.pkl
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.D_MODEL: 512
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NUM_DECODER_LAYERS: 6
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NUM_ATTN_HEAD: 8
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.MAP_D_MODEL: 256
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.DROPOUT_OF_ATTN: 0.1
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NUM_BASE_MAP_POLYLINES: 256
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NUM_WAYPOINT_MAP_POLYLINES: 128
+2025-09-25 18:23:12,396   INFO  
+cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS = edict()
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS.cls: 1.0
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS.reg: 1.0
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS.vel: 0.5
+2025-09-25 18:23:12,396   INFO  cfg.MODEL.MOTION_DECODER.NMS_DIST_THRESH: 2.5
+2025-09-25 18:23:12,396   INFO  
+cfg.OPTIMIZATION = edict()
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 10
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 30
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.OPTIMIZER: AdamW
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.LR: 0.0001
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.SCHEDULER: lambdaLR
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [22, 24, 26, 28]
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.5
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-06
+2025-09-25 18:23:12,396   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 1000.0
+2025-09-25 18:23:12,396   INFO  cfg.TAG: mtr+100_percent_data
+2025-09-25 18:23:12,396   INFO  cfg.EXP_GROUP_PATH: waymo
+2025-09-25 18:23:12,396   INFO  Start to load infos from /home/ioon/MTR/data/waymo/processed_scenarios_val_infos.pkl
+2025-09-25 18:23:12,442   INFO  Total scenes before filters: 9922
+2025-09-25 18:23:12,512   INFO  Total scenes after filter_info_by_object_type: 9922
+2025-09-25 18:23:12,512   INFO  Total scenes after filters: 9922
+2025-09-25 18:23:12,733   INFO  ==> Loading parameters from checkpoint ../output/waymo/mtr+100_percent_data/my_first_exp/ckpt/checkpoint_epoch_29.pth to GPU
+2025-09-25 18:23:13,504   INFO  ==> Checkpoint trained from version: none
+2025-09-25 18:23:13,504   INFO  The number of disk ckpt keys: 836
+2025-09-25 18:23:13,548   INFO  Missing keys: []
+2025-09-25 18:23:13,548   INFO  The number of missing keys: 0
+2025-09-25 18:23:13,548   INFO  The number of unexpected keys: 0
+2025-09-25 18:23:13,548   INFO  ==> Done (total keys 836)
+2025-09-25 18:23:13,597   INFO  *************** LOAD MODEL (epoch=29, iter=2830603) for EVALUATION *****************
+2025-09-25 18:23:13,597   INFO  *************** EPOCH 29 EVALUATION *****************
+2025-09-25 18:23:14,013   INFO  eval: epoch=29, batch_iter=0/9922, batch_size=1, iter_cost=0.41s, time_cost: 00:00/1:08:22, 
+2025-09-25 18:23:15,436   INFO  eval: epoch=29, batch_iter=50/9922, batch_size=1, iter_cost=0.04s, time_cost: 00:01/06:02, 
+2025-09-25 18:23:16,892   INFO  eval: epoch=29, batch_iter=100/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:03/05:23, 
+2025-09-25 18:23:18,319   INFO  eval: epoch=29, batch_iter=150/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:04/05:07, 
+2025-09-25 18:23:19,821   INFO  eval: epoch=29, batch_iter=200/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:06/05:02, 
+2025-09-25 18:23:21,087   INFO  eval: epoch=29, batch_iter=250/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:07/04:49, 
+2025-09-25 18:23:22,543   INFO  eval: epoch=29, batch_iter=300/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:08/04:46, 
+2025-09-25 18:23:23,968   INFO  eval: epoch=29, batch_iter=350/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:10/04:43, 
+2025-09-25 18:23:25,275   INFO  eval: epoch=29, batch_iter=400/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:11/04:37, 
+2025-09-25 18:23:26,685   INFO  eval: epoch=29, batch_iter=450/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:13/04:35, 
+2025-09-25 18:23:28,150   INFO  eval: epoch=29, batch_iter=500/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:14/04:34, 
+2025-09-25 18:23:29,466   INFO  eval: epoch=29, batch_iter=550/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:15/04:30, 
+2025-09-25 18:23:30,743   INFO  eval: epoch=29, batch_iter=600/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:17/04:26, 
+2025-09-25 18:23:32,226   INFO  eval: epoch=29, batch_iter=650/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:18/04:25, 
+2025-09-25 18:23:33,738   INFO  eval: epoch=29, batch_iter=700/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:20/04:25, 
+2025-09-25 18:23:35,218   INFO  eval: epoch=29, batch_iter=750/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:21/04:24, 
+2025-09-25 18:23:36,642   INFO  eval: epoch=29, batch_iter=800/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:23/04:22, 
+2025-09-25 18:23:38,194   INFO  eval: epoch=29, batch_iter=850/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:24/04:22, 
+2025-09-25 18:23:39,632   INFO  eval: epoch=29, batch_iter=900/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:26/04:20, 
+2025-09-25 18:23:41,125   INFO  eval: epoch=29, batch_iter=950/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:27/04:19, 
+2025-09-25 18:23:42,569   INFO  eval: epoch=29, batch_iter=1000/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:28/04:18, 
+2025-09-25 18:23:44,000   INFO  eval: epoch=29, batch_iter=1050/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:30/04:16, 
+2025-09-25 18:23:45,565   INFO  eval: epoch=29, batch_iter=1100/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:31/04:16, 
+2025-09-25 18:23:47,101   INFO  eval: epoch=29, batch_iter=1150/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:33/04:15, 
+2025-09-25 18:23:48,565   INFO  eval: epoch=29, batch_iter=1200/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:34/04:14, 
+2025-09-25 18:23:50,048   INFO  eval: epoch=29, batch_iter=1250/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:36/04:12, 
+2025-09-25 18:23:51,566   INFO  eval: epoch=29, batch_iter=1300/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:37/04:11, 
+2025-09-25 18:23:53,147   INFO  eval: epoch=29, batch_iter=1350/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:39/04:11, 
+2025-09-25 18:23:54,628   INFO  eval: epoch=29, batch_iter=1400/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:41/04:09, 
+2025-09-25 18:23:56,180   INFO  eval: epoch=29, batch_iter=1450/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:42/04:08, 
+2025-09-25 18:23:57,629   INFO  eval: epoch=29, batch_iter=1500/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:44/04:07, 
+2025-09-25 18:23:59,125   INFO  eval: epoch=29, batch_iter=1550/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:45/04:05, 
+2025-09-25 18:24:00,585   INFO  eval: epoch=29, batch_iter=1600/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:46/04:04, 
+2025-09-25 18:24:02,076   INFO  eval: epoch=29, batch_iter=1650/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:48/04:03, 
+2025-09-25 18:24:03,709   INFO  eval: epoch=29, batch_iter=1700/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:50/04:02, 
+2025-09-25 18:24:05,348   INFO  eval: epoch=29, batch_iter=1750/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:51/04:01, 
+2025-09-25 18:24:06,833   INFO  eval: epoch=29, batch_iter=1800/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:53/04:00, 
+2025-09-25 18:24:08,320   INFO  eval: epoch=29, batch_iter=1850/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:54/03:58, 
+2025-09-25 18:24:09,900   INFO  eval: epoch=29, batch_iter=1900/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:56/03:57, 
+2025-09-25 18:24:11,385   INFO  eval: epoch=29, batch_iter=1950/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:57/03:56, 
+2025-09-25 18:24:12,906   INFO  eval: epoch=29, batch_iter=2000/9922, batch_size=1, iter_cost=0.03s, time_cost: 00:59/03:54, 
+2025-09-25 18:24:14,483   INFO  eval: epoch=29, batch_iter=2050/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:00/03:53, 
+2025-09-25 18:24:16,018   INFO  eval: epoch=29, batch_iter=2100/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:02/03:52, 
+2025-09-25 18:24:17,504   INFO  eval: epoch=29, batch_iter=2150/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:03/03:51, 
+2025-09-25 18:24:19,007   INFO  eval: epoch=29, batch_iter=2200/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:05/03:49, 
+2025-09-25 18:24:20,522   INFO  eval: epoch=29, batch_iter=2250/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:06/03:48, 
+2025-09-25 18:24:22,040   INFO  eval: epoch=29, batch_iter=2300/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:08/03:46, 
+2025-09-25 18:24:23,498   INFO  eval: epoch=29, batch_iter=2350/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:09/03:45, 
+2025-09-25 18:24:24,983   INFO  eval: epoch=29, batch_iter=2400/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:11/03:43, 
+2025-09-25 18:24:26,497   INFO  eval: epoch=29, batch_iter=2450/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:12/03:42, 
+2025-09-25 18:24:28,033   INFO  eval: epoch=29, batch_iter=2500/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:14/03:40, 
+2025-09-25 18:24:29,598   INFO  eval: epoch=29, batch_iter=2550/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:15/03:39, 
+2025-09-25 18:24:31,158   INFO  eval: epoch=29, batch_iter=2600/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:17/03:38, 
+2025-09-25 18:24:32,737   INFO  eval: epoch=29, batch_iter=2650/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:19/03:37, 
+2025-09-25 18:24:34,277   INFO  eval: epoch=29, batch_iter=2700/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:20/03:35, 
+2025-09-25 18:24:35,780   INFO  eval: epoch=29, batch_iter=2750/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:22/03:34, 
+2025-09-25 18:24:37,262   INFO  eval: epoch=29, batch_iter=2800/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:23/03:32, 
+2025-09-25 18:24:38,809   INFO  eval: epoch=29, batch_iter=2850/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:25/03:31, 
+2025-09-25 18:24:40,278   INFO  eval: epoch=29, batch_iter=2900/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:26/03:29, 
+2025-09-25 18:24:41,830   INFO  eval: epoch=29, batch_iter=2950/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:28/03:28, 
+2025-09-25 18:24:43,441   INFO  eval: epoch=29, batch_iter=3000/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:29/03:27, 
+2025-09-25 18:24:44,992   INFO  eval: epoch=29, batch_iter=3050/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:31/03:25, 
+2025-09-25 18:24:46,546   INFO  eval: epoch=29, batch_iter=3100/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:32/03:24, 
+2025-09-25 18:24:48,070   INFO  eval: epoch=29, batch_iter=3150/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:34/03:23, 
+2025-09-25 18:24:49,769   INFO  eval: epoch=29, batch_iter=3200/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:36/03:22, 
+2025-09-25 18:24:51,570   INFO  eval: epoch=29, batch_iter=3250/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:37/03:21, 
+2025-09-25 18:24:53,392   INFO  eval: epoch=29, batch_iter=3300/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:39/03:20, 
+2025-09-25 18:24:55,152   INFO  eval: epoch=29, batch_iter=3350/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:41/03:19, 
+2025-09-25 18:24:56,932   INFO  eval: epoch=29, batch_iter=3400/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:43/03:18, 
+2025-09-25 18:24:58,838   INFO  eval: epoch=29, batch_iter=3450/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:45/03:17, 
+2025-09-25 18:25:00,496   INFO  eval: epoch=29, batch_iter=3500/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:46/03:16, 
+2025-09-25 18:25:02,130   INFO  eval: epoch=29, batch_iter=3550/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:48/03:14, 
+2025-09-25 18:25:03,927   INFO  eval: epoch=29, batch_iter=3600/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:50/03:13, 
+2025-09-25 18:25:05,581   INFO  eval: epoch=29, batch_iter=3650/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:51/03:12, 
+2025-09-25 18:25:07,116   INFO  eval: epoch=29, batch_iter=3700/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:53/03:10, 
+2025-09-25 18:25:08,623   INFO  eval: epoch=29, batch_iter=3750/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:55/03:09, 
+2025-09-25 18:25:10,102   INFO  eval: epoch=29, batch_iter=3800/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:56/03:07, 
+2025-09-25 18:25:11,618   INFO  eval: epoch=29, batch_iter=3850/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:58/03:06, 
+2025-09-25 18:25:13,120   INFO  eval: epoch=29, batch_iter=3900/9922, batch_size=1, iter_cost=0.03s, time_cost: 01:59/03:04, 
+2025-09-25 18:25:14,664   INFO  eval: epoch=29, batch_iter=3950/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:01/03:03, 
+2025-09-25 18:25:16,318   INFO  eval: epoch=29, batch_iter=4000/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:02/03:01, 
+2025-09-25 18:25:18,012   INFO  eval: epoch=29, batch_iter=4050/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:04/03:00, 
+2025-09-25 18:25:19,634   INFO  eval: epoch=29, batch_iter=4100/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:06/02:58, 
+2025-09-25 18:25:21,262   INFO  eval: epoch=29, batch_iter=4150/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:07/02:57, 
+2025-09-25 18:25:22,949   INFO  eval: epoch=29, batch_iter=4200/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:09/02:56, 
+2025-09-25 18:25:24,643   INFO  eval: epoch=29, batch_iter=4250/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:11/02:54, 
+2025-09-25 18:25:26,512   INFO  eval: epoch=29, batch_iter=4300/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:12/02:53, 
+2025-09-25 18:25:28,252   INFO  eval: epoch=29, batch_iter=4350/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:14/02:52, 
+2025-09-25 18:25:30,134   INFO  eval: epoch=29, batch_iter=4400/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:16/02:51, 
+2025-09-25 18:25:31,931   INFO  eval: epoch=29, batch_iter=4450/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:18/02:50, 
+2025-09-25 18:25:33,666   INFO  eval: epoch=29, batch_iter=4500/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:20/02:48, 
+2025-09-25 18:25:35,360   INFO  eval: epoch=29, batch_iter=4550/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:21/02:47, 
+2025-09-25 18:25:37,059   INFO  eval: epoch=29, batch_iter=4600/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:23/02:45, 
+2025-09-25 18:25:38,659   INFO  eval: epoch=29, batch_iter=4650/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:25/02:44, 
+2025-09-25 18:25:40,434   INFO  eval: epoch=29, batch_iter=4700/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:26/02:43, 
+2025-09-25 18:25:42,108   INFO  eval: epoch=29, batch_iter=4750/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:28/02:41, 
+2025-09-25 18:25:43,668   INFO  eval: epoch=29, batch_iter=4800/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:30/02:40, 
+2025-09-25 18:25:45,299   INFO  eval: epoch=29, batch_iter=4850/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:31/02:38, 
+2025-09-25 18:25:47,114   INFO  eval: epoch=29, batch_iter=4900/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:33/02:37, 
+2025-09-25 18:25:49,127   INFO  eval: epoch=29, batch_iter=4950/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:35/02:36, 
+2025-09-25 18:25:50,914   INFO  eval: epoch=29, batch_iter=5000/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:37/02:34, 
+2025-09-25 18:25:52,713   INFO  eval: epoch=29, batch_iter=5050/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:39/02:33, 
+2025-09-25 18:25:54,367   INFO  eval: epoch=29, batch_iter=5100/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:40/02:32, 
+2025-09-25 18:25:56,146   INFO  eval: epoch=29, batch_iter=5150/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:42/02:30, 
+2025-09-25 18:25:57,887   INFO  eval: epoch=29, batch_iter=5200/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:44/02:29, 
+2025-09-25 18:25:59,781   INFO  eval: epoch=29, batch_iter=5250/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:46/02:27, 
+2025-09-25 18:26:01,637   INFO  eval: epoch=29, batch_iter=5300/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:48/02:26, 
+2025-09-25 18:26:03,560   INFO  eval: epoch=29, batch_iter=5350/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:49/02:25, 
+2025-09-25 18:26:05,528   INFO  eval: epoch=29, batch_iter=5400/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:51/02:23, 
+2025-09-25 18:26:07,264   INFO  eval: epoch=29, batch_iter=5450/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:53/02:22, 
+2025-09-25 18:26:09,052   INFO  eval: epoch=29, batch_iter=5500/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:55/02:21, 
+2025-09-25 18:26:10,726   INFO  eval: epoch=29, batch_iter=5550/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:57/02:19, 
+2025-09-25 18:26:12,409   INFO  eval: epoch=29, batch_iter=5600/9922, batch_size=1, iter_cost=0.03s, time_cost: 02:58/02:18, 
+2025-09-25 18:26:14,066   INFO  eval: epoch=29, batch_iter=5650/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:00/02:16, 
+2025-09-25 18:26:15,625   INFO  eval: epoch=29, batch_iter=5700/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:02/02:14, 
+2025-09-25 18:26:17,222   INFO  eval: epoch=29, batch_iter=5750/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:03/02:13, 
+2025-09-25 18:26:18,840   INFO  eval: epoch=29, batch_iter=5800/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:05/02:11, 
+2025-09-25 18:26:20,612   INFO  eval: epoch=29, batch_iter=5850/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:07/02:10, 
+2025-09-25 18:26:22,352   INFO  eval: epoch=29, batch_iter=5900/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:08/02:08, 
+2025-09-25 18:26:23,970   INFO  eval: epoch=29, batch_iter=5950/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:10/02:07, 
+2025-09-25 18:26:25,559   INFO  eval: epoch=29, batch_iter=6000/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:11/02:05, 
+2025-09-25 18:26:27,220   INFO  eval: epoch=29, batch_iter=6050/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:13/02:03, 
+2025-09-25 18:26:28,751   INFO  eval: epoch=29, batch_iter=6100/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:15/02:02, 
+2025-09-25 18:26:30,371   INFO  eval: epoch=29, batch_iter=6150/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:16/02:00, 
+2025-09-25 18:26:31,980   INFO  eval: epoch=29, batch_iter=6200/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:18/01:59, 
+2025-09-25 18:26:33,669   INFO  eval: epoch=29, batch_iter=6250/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:20/01:57, 
+2025-09-25 18:26:35,335   INFO  eval: epoch=29, batch_iter=6300/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:21/01:55, 
+2025-09-25 18:26:36,897   INFO  eval: epoch=29, batch_iter=6350/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:23/01:54, 
+2025-09-25 18:26:38,443   INFO  eval: epoch=29, batch_iter=6400/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:24/01:52, 
+2025-09-25 18:26:40,043   INFO  eval: epoch=29, batch_iter=6450/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:26/01:51, 
+2025-09-25 18:26:41,490   INFO  eval: epoch=29, batch_iter=6500/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:27/01:49, 
+2025-09-25 18:26:43,070   INFO  eval: epoch=29, batch_iter=6550/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:29/01:47, 
+2025-09-25 18:26:44,693   INFO  eval: epoch=29, batch_iter=6600/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:31/01:46, 
+2025-09-25 18:26:46,287   INFO  eval: epoch=29, batch_iter=6650/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:32/01:44, 
+2025-09-25 18:26:47,897   INFO  eval: epoch=29, batch_iter=6700/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:34/01:43, 
+2025-09-25 18:26:49,505   INFO  eval: epoch=29, batch_iter=6750/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:35/01:41, 
+2025-09-25 18:26:51,094   INFO  eval: epoch=29, batch_iter=6800/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:37/01:39, 
+2025-09-25 18:26:52,638   INFO  eval: epoch=29, batch_iter=6850/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:39/01:38, 
+2025-09-25 18:26:54,273   INFO  eval: epoch=29, batch_iter=6900/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:40/01:36, 
+2025-09-25 18:26:55,851   INFO  eval: epoch=29, batch_iter=6950/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:42/01:35, 
+2025-09-25 18:26:57,427   INFO  eval: epoch=29, batch_iter=7000/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:43/01:33, 
+2025-09-25 18:26:59,004   INFO  eval: epoch=29, batch_iter=7050/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:45/01:31, 
+2025-09-25 18:27:00,580   INFO  eval: epoch=29, batch_iter=7100/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:46/01:30, 
+2025-09-25 18:27:02,210   INFO  eval: epoch=29, batch_iter=7150/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:48/01:28, 
+2025-09-25 18:27:03,841   INFO  eval: epoch=29, batch_iter=7200/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:50/01:27, 
+2025-09-25 18:27:05,433   INFO  eval: epoch=29, batch_iter=7250/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:51/01:25, 
+2025-09-25 18:27:07,098   INFO  eval: epoch=29, batch_iter=7300/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:53/01:23, 
+2025-09-25 18:27:08,733   INFO  eval: epoch=29, batch_iter=7350/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:55/01:22, 
+2025-09-25 18:27:10,284   INFO  eval: epoch=29, batch_iter=7400/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:56/01:20, 
+2025-09-25 18:27:11,911   INFO  eval: epoch=29, batch_iter=7450/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:58/01:19, 
+2025-09-25 18:27:13,422   INFO  eval: epoch=29, batch_iter=7500/9922, batch_size=1, iter_cost=0.03s, time_cost: 03:59/01:17, 
+2025-09-25 18:27:15,022   INFO  eval: epoch=29, batch_iter=7550/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:01/01:15, 
+2025-09-25 18:27:16,559   INFO  eval: epoch=29, batch_iter=7600/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:02/01:14, 
+2025-09-25 18:27:18,122   INFO  eval: epoch=29, batch_iter=7650/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:04/01:12, 
+2025-09-25 18:27:20,207   INFO  eval: epoch=29, batch_iter=7700/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:06/01:11, 
+2025-09-25 18:27:22,322   INFO  eval: epoch=29, batch_iter=7750/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:08/01:09, 
+2025-09-25 18:27:23,967   INFO  eval: epoch=29, batch_iter=7800/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:10/01:08, 
+2025-09-25 18:27:25,494   INFO  eval: epoch=29, batch_iter=7850/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:11/01:06, 
+2025-09-25 18:27:27,153   INFO  eval: epoch=29, batch_iter=7900/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:13/01:04, 
+2025-09-25 18:27:28,762   INFO  eval: epoch=29, batch_iter=7950/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:15/01:03, 
+2025-09-25 18:27:30,380   INFO  eval: epoch=29, batch_iter=8000/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:16/01:01, 
+2025-09-25 18:27:31,958   INFO  eval: epoch=29, batch_iter=8050/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:18/01:00, 
+2025-09-25 18:27:33,609   INFO  eval: epoch=29, batch_iter=8100/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:20/00:58, 
+2025-09-25 18:27:35,318   INFO  eval: epoch=29, batch_iter=8150/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:21/00:56, 
+2025-09-25 18:27:37,608   INFO  eval: epoch=29, batch_iter=8200/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:24/00:55, 
+2025-09-25 18:27:39,293   INFO  eval: epoch=29, batch_iter=8250/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:25/00:53, 
+2025-09-25 18:27:41,280   INFO  eval: epoch=29, batch_iter=8300/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:27/00:52, 
+2025-09-25 18:27:43,432   INFO  eval: epoch=29, batch_iter=8350/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:29/00:50, 
+2025-09-25 18:27:45,055   INFO  eval: epoch=29, batch_iter=8400/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:31/00:49, 
+2025-09-25 18:27:47,323   INFO  eval: epoch=29, batch_iter=8450/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:33/00:47, 
+2025-09-25 18:27:49,462   INFO  eval: epoch=29, batch_iter=8500/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:35/00:46, 
+2025-09-25 18:27:51,017   INFO  eval: epoch=29, batch_iter=8550/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:37/00:44, 
+2025-09-25 18:27:52,840   INFO  eval: epoch=29, batch_iter=8600/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:39/00:42, 
+2025-09-25 18:27:55,180   INFO  eval: epoch=29, batch_iter=8650/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:41/00:41, 
+2025-09-25 18:27:57,228   INFO  eval: epoch=29, batch_iter=8700/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:43/00:39, 
+2025-09-25 18:27:59,017   INFO  eval: epoch=29, batch_iter=8750/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:45/00:38, 
+2025-09-25 18:28:00,991   INFO  eval: epoch=29, batch_iter=8800/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:47/00:36, 
+2025-09-25 18:28:02,588   INFO  eval: epoch=29, batch_iter=8850/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:48/00:35, 
+2025-09-25 18:28:04,233   INFO  eval: epoch=29, batch_iter=8900/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:50/00:33, 
+2025-09-25 18:28:05,951   INFO  eval: epoch=29, batch_iter=8950/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:52/00:31, 
+2025-09-25 18:28:07,591   INFO  eval: epoch=29, batch_iter=9000/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:53/00:30, 
+2025-09-25 18:28:09,215   INFO  eval: epoch=29, batch_iter=9050/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:55/00:28, 
+2025-09-25 18:28:10,800   INFO  eval: epoch=29, batch_iter=9100/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:57/00:26, 
+2025-09-25 18:28:12,705   INFO  eval: epoch=29, batch_iter=9150/9922, batch_size=1, iter_cost=0.03s, time_cost: 04:59/00:25, 
+2025-09-25 18:28:14,369   INFO  eval: epoch=29, batch_iter=9200/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:00/00:23, 
+2025-09-25 18:28:16,624   INFO  eval: epoch=29, batch_iter=9250/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:03/00:22, 
+2025-09-25 18:28:19,034   INFO  eval: epoch=29, batch_iter=9300/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:05/00:20, 
+2025-09-25 18:28:20,658   INFO  eval: epoch=29, batch_iter=9350/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:07/00:18, 
+2025-09-25 18:28:22,228   INFO  eval: epoch=29, batch_iter=9400/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:08/00:17, 
+2025-09-25 18:28:24,070   INFO  eval: epoch=29, batch_iter=9450/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:10/00:15, 
+2025-09-25 18:28:26,512   INFO  eval: epoch=29, batch_iter=9500/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:12/00:13, 
+2025-09-25 18:28:28,702   INFO  eval: epoch=29, batch_iter=9550/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:15/00:12, 
+2025-09-25 18:28:30,302   INFO  eval: epoch=29, batch_iter=9600/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:16/00:10, 
+2025-09-25 18:28:32,671   INFO  eval: epoch=29, batch_iter=9650/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:19/00:08, 
+2025-09-25 18:28:35,051   INFO  eval: epoch=29, batch_iter=9700/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:21/00:07, 
+2025-09-25 18:28:37,367   INFO  eval: epoch=29, batch_iter=9750/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:23/00:05, 
+2025-09-25 18:28:39,981   INFO  eval: epoch=29, batch_iter=9800/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:26/00:04, 
+2025-09-25 18:28:41,932   INFO  eval: epoch=29, batch_iter=9850/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:28/00:02, 
+2025-09-25 18:28:43,961   INFO  eval: epoch=29, batch_iter=9900/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:30/00:00, 
+2025-09-25 18:28:44,748   INFO  eval: epoch=29, batch_iter=9921/9922, batch_size=1, iter_cost=0.03s, time_cost: 05:31/00:00, 
+2025-09-25 18:28:44,785   INFO  *************** Performance of EPOCH 29 *****************
+2025-09-25 18:28:44,785   INFO  Generate label finished(sec_per_example: 0.0334 second).
+2025-09-25 18:29:03,755   INFO  
+minADE - TYPE_VEHICLE_5	: 0.9413 
+minADE - TYPE_VEHICLE_9	: 1.5896 
+minADE - TYPE_VEHICLE_15	: 2.7504 
+minADE - TYPE_PEDESTRIAN_5	: 0.2853 
+minADE - TYPE_PEDESTRIAN_9	: 0.5129 
+minADE - TYPE_PEDESTRIAN_15	: 0.8584 
+minADE - TYPE_CYCLIST_5	: 0.6282 
+minADE - TYPE_CYCLIST_9	: 1.0926 
+minADE - TYPE_CYCLIST_15	: 1.8411 
+minFDE - TYPE_VEHICLE_5	: 1.5876 
+minFDE - TYPE_VEHICLE_9	: 2.9548 
+minFDE - TYPE_VEHICLE_15	: 6.3692 
+minFDE - TYPE_PEDESTRIAN_5	: 0.5155 
+minFDE - TYPE_PEDESTRIAN_9	: 1.0090 
+minFDE - TYPE_PEDESTRIAN_15	: 1.8699 
+minFDE - TYPE_CYCLIST_5	: 1.1181 
+minFDE - TYPE_CYCLIST_9	: 2.1156 
+minFDE - TYPE_CYCLIST_15	: 4.0324 
+MissRate - TYPE_VEHICLE_5	: 0.3707 
+MissRate - TYPE_VEHICLE_9	: 0.3712 
+MissRate - TYPE_VEHICLE_15	: 0.4223 
+MissRate - TYPE_PEDESTRIAN_5	: 0.0947 
+MissRate - TYPE_PEDESTRIAN_9	: 0.1200 
+MissRate - TYPE_PEDESTRIAN_15	: 0.1680 
+MissRate - TYPE_CYCLIST_5	: 0.3499 
+MissRate - TYPE_CYCLIST_9	: 0.3387 
+MissRate - TYPE_CYCLIST_15	: 0.3654 
+OverlapRate - TYPE_VEHICLE_5	: 0.0111 
+OverlapRate - TYPE_VEHICLE_9	: 0.0324 
+OverlapRate - TYPE_VEHICLE_15	: 0.0966 
+OverlapRate - TYPE_PEDESTRIAN_5	: 0.0564 
+OverlapRate - TYPE_PEDESTRIAN_9	: 0.0664 
+OverlapRate - TYPE_PEDESTRIAN_15	: 0.0775 
+OverlapRate - TYPE_CYCLIST_5	: 0.0196 
+OverlapRate - TYPE_CYCLIST_9	: 0.0392 
+OverlapRate - TYPE_CYCLIST_15	: 0.0711 
+mAP - TYPE_VEHICLE_5	: 0.2552 
+mAP - TYPE_VEHICLE_9	: 0.2372 
+mAP - TYPE_VEHICLE_15	: 0.1990 
+mAP - TYPE_PEDESTRIAN_5	: 0.4805 
+mAP - TYPE_PEDESTRIAN_9	: 0.3591 
+mAP - TYPE_PEDESTRIAN_15	: 0.2754 
+mAP - TYPE_CYCLIST_5	: 0.2507 
+mAP - TYPE_CYCLIST_9	: 0.2535 
+mAP - TYPE_CYCLIST_15	: 0.1322 
+-------------------------------------------------------------: 0.0000 
+minADE - VEHICLE: 1.7604 
+minADE - PEDESTRIAN: 0.5522 
+minADE - CYCLIST: 1.1873 
+minFDE - VEHICLE: 3.6372 
+minFDE - PEDESTRIAN: 1.1315 
+minFDE - CYCLIST: 2.4220 
+MissRate - VEHICLE: 0.3881 
+MissRate - PEDESTRIAN: 0.1276 
+MissRate - CYCLIST: 0.3513 
+OverlapRate - VEHICLE: 0.0467 
+OverlapRate - PEDESTRIAN: 0.0668 
+OverlapRate - CYCLIST: 0.0433 
+mAP - VEHICLE: 0.2305 
+mAP - PEDESTRIAN: 0.3717 
+mAP - CYCLIST: 0.2121 
+--------------------------------------------------------------: 0.0000 
+minADE: 1.1666 
+minFDE: 2.3969 
+MissRate: 0.2890 
+mAP: 0.2714 
+---------------------------------------------------------------: 0.0000 
+TYPE_UNSET: 0.0000 
+TYPE_VEHICLE: 37476.0000 
+TYPE_PEDESTRIAN: 4683.0000 
+TYPE_CYCLIST: 1223.0000 
+TYPE_OTHER: 0.0000 
+-----Note that this evaluation may have marginal differences with the official Waymo evaluation server-----: 0.0000 
+
+       Waymo          mAP       minADE       minFDE     MissRate            
+      VEHICLE      0.2305,      1.7604,      3.6372,      0.3881,            
+   PEDESTRIAN      0.3717,      0.5522,      1.1315,      0.1276,            
+      CYCLIST      0.2121,      1.1873,      2.4220,      0.3513,            
+          Avg      0.2714,      1.1666,      2.3969,      0.2890,            
+
+2025-09-25 18:29:03,756   INFO  Result is save to /home/ioon/MTR/output/waymo/mtr+100_percent_data/default/eval/epoch_29/default
+2025-09-25 18:29:03,756   INFO  ****************Evaluation done.*****************

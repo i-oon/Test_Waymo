@@ -1,0 +1,313 @@
+2025-08-15 19:04:35,171   INFO  **********************Start logging**********************
+2025-08-15 19:04:35,171   INFO  CUDA_VISIBLE_DEVICES=ALL
+2025-08-15 19:04:35,172   INFO  cfg_file         cfgs/waymo/mtr+20_percent_data.yaml
+2025-08-15 19:04:35,172   INFO  batch_size       1
+2025-08-15 19:04:35,172   INFO  workers          4
+2025-08-15 19:04:35,172   INFO  extra_tag        default
+2025-08-15 19:04:35,172   INFO  ckpt             ../output/waymo/mtr+100_percent_data/my_first_exp/ckpt/checkpoint_epoch_30.pth
+2025-08-15 19:04:35,172   INFO  launcher         none
+2025-08-15 19:04:35,172   INFO  tcp_port         18888
+2025-08-15 19:04:35,172   INFO  local_rank       0
+2025-08-15 19:04:35,172   INFO  fix_random_seed  False
+2025-08-15 19:04:35,172   INFO  set_cfgs         None
+2025-08-15 19:04:35,172   INFO  max_waiting_mins 30
+2025-08-15 19:04:35,172   INFO  start_epoch      0
+2025-08-15 19:04:35,172   INFO  eval_tag         default
+2025-08-15 19:04:35,172   INFO  eval_all         False
+2025-08-15 19:04:35,172   INFO  ckpt_dir         None
+2025-08-15 19:04:35,172   INFO  save_to_file     False
+2025-08-15 19:04:35,172   INFO  cfg.ROOT_DIR: /home/ioon/MTR
+2025-08-15 19:04:35,172   INFO  cfg.LOCAL_RANK: 0
+2025-08-15 19:04:35,172   INFO  
+cfg.DATA_CONFIG = edict()
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.DATASET: WaymoDataset
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.OBJECT_TYPE: ['TYPE_VEHICLE', 'TYPE_PEDESTRIAN', 'TYPE_CYCLIST']
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.DATA_ROOT: data/waymo
+2025-08-15 19:04:35,172   INFO  
+cfg.DATA_CONFIG.SPLIT_DIR = edict()
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.SPLIT_DIR.train: processed_scenarios_training
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.SPLIT_DIR.test: processed_scenarios_validation
+2025-08-15 19:04:35,172   INFO  
+cfg.DATA_CONFIG.INFO_FILE = edict()
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.INFO_FILE.train: processed_scenarios_training_infos.pkl
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.INFO_FILE.test: processed_scenarios_val_infos.pkl
+2025-08-15 19:04:35,172   INFO  
+cfg.DATA_CONFIG.SAMPLE_INTERVAL = edict()
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.SAMPLE_INTERVAL.train: 5
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.SAMPLE_INTERVAL.test: 1
+2025-08-15 19:04:35,172   INFO  
+cfg.DATA_CONFIG.INFO_FILTER_DICT = edict()
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.INFO_FILTER_DICT.filter_info_by_object_type: ['TYPE_VEHICLE', 'TYPE_PEDESTRIAN', 'TYPE_CYCLIST']
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.POINT_SAMPLED_INTERVAL: 1
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.NUM_POINTS_EACH_POLYLINE: 20
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.VECTOR_BREAK_DIST_THRESH: 1.0
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.NUM_OF_SRC_POLYLINES: 768
+2025-08-15 19:04:35,172   INFO  cfg.DATA_CONFIG.CENTER_OFFSET_OF_MAP: [30.0, 0]
+2025-08-15 19:04:35,172   INFO  
+cfg.MODEL = edict()
+2025-08-15 19:04:35,172   INFO  
+cfg.MODEL.CONTEXT_ENCODER = edict()
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NAME: MTREncoder
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_OF_ATTN_NEIGHBORS: 16
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_INPUT_ATTR_AGENT: 29
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_INPUT_ATTR_MAP: 9
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_CHANNEL_IN_MLP_AGENT: 256
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_CHANNEL_IN_MLP_MAP: 64
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_LAYER_IN_MLP_AGENT: 3
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_LAYER_IN_MLP_MAP: 5
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_LAYER_IN_PRE_MLP_MAP: 3
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.D_MODEL: 256
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_ATTN_LAYERS: 6
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.NUM_ATTN_HEAD: 8
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.DROPOUT_OF_ATTN: 0.1
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.CONTEXT_ENCODER.USE_LOCAL_ATTN: True
+2025-08-15 19:04:35,172   INFO  
+cfg.MODEL.MOTION_DECODER = edict()
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.NAME: MTRDecoder
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.OBJECT_TYPE: ['TYPE_VEHICLE', 'TYPE_PEDESTRIAN', 'TYPE_CYCLIST']
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.CENTER_OFFSET_OF_MAP: [30.0, 0]
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.NUM_FUTURE_FRAMES: 80
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.NUM_MOTION_MODES: 6
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.INTENTION_POINTS_FILE: data/waymo/cluster_64_center_dict.pkl
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.D_MODEL: 512
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.NUM_DECODER_LAYERS: 6
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.NUM_ATTN_HEAD: 8
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.MAP_D_MODEL: 256
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.DROPOUT_OF_ATTN: 0.1
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.NUM_BASE_MAP_POLYLINES: 256
+2025-08-15 19:04:35,172   INFO  cfg.MODEL.MOTION_DECODER.NUM_WAYPOINT_MAP_POLYLINES: 128
+2025-08-15 19:04:35,173   INFO  
+cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS = edict()
+2025-08-15 19:04:35,173   INFO  cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS.cls: 1.0
+2025-08-15 19:04:35,173   INFO  cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS.reg: 1.0
+2025-08-15 19:04:35,173   INFO  cfg.MODEL.MOTION_DECODER.LOSS_WEIGHTS.vel: 0.5
+2025-08-15 19:04:35,173   INFO  cfg.MODEL.MOTION_DECODER.NMS_DIST_THRESH: 2.5
+2025-08-15 19:04:35,173   INFO  
+cfg.OPTIMIZATION = edict()
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 10
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 30
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.OPTIMIZER: AdamW
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.LR: 0.0001
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.SCHEDULER: lambdaLR
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [22, 24, 26, 28]
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.5
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-06
+2025-08-15 19:04:35,173   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 1000.0
+2025-08-15 19:04:35,173   INFO  cfg.TAG: mtr+20_percent_data
+2025-08-15 19:04:35,173   INFO  cfg.EXP_GROUP_PATH: waymo
+2025-08-15 19:04:35,173   INFO  Start to load infos from /home/ioon/MTR/data/waymo/processed_scenarios_val_infos.pkl
+2025-08-15 19:04:35,229   INFO  Total scenes before filters: 5770
+2025-08-15 19:04:35,288   INFO  Total scenes after filter_info_by_object_type: 5770
+2025-08-15 19:04:35,288   INFO  Total scenes after filters: 5770
+2025-08-15 19:04:36,065   INFO  ==> Loading parameters from checkpoint ../output/waymo/mtr+100_percent_data/my_first_exp/ckpt/checkpoint_epoch_30.pth to GPU
+2025-08-15 19:04:36,824   INFO  ==> Checkpoint trained from version: none
+2025-08-15 19:04:36,824   INFO  The number of disk ckpt keys: 842
+2025-08-15 19:04:36,869   INFO  Missing keys: []
+2025-08-15 19:04:36,869   INFO  The number of missing keys: 0
+2025-08-15 19:04:36,870   INFO  The number of unexpected keys: 0
+2025-08-15 19:04:36,870   INFO  ==> Done (total keys 842)
+2025-08-15 19:04:36,918   INFO  *************** LOAD MODEL (epoch=30, iter=280691) for EVALUATION *****************
+2025-08-15 19:04:36,918   INFO  *************** EPOCH 30 EVALUATION *****************
+2025-08-15 19:04:37,535   INFO  eval: epoch=30, batch_iter=0/5770, batch_size=1, iter_cost=0.61s, time_cost: 00:00/59:04, 
+2025-08-15 19:04:39,213   INFO  eval: epoch=30, batch_iter=50/5770, batch_size=1, iter_cost=0.05s, time_cost: 00:02/04:22, 
+2025-08-15 19:04:40,827   INFO  eval: epoch=30, batch_iter=100/5770, batch_size=1, iter_cost=0.04s, time_cost: 00:03/03:41, 
+2025-08-15 19:04:42,469   INFO  eval: epoch=30, batch_iter=150/5770, batch_size=1, iter_cost=0.04s, time_cost: 00:05/03:27, 
+2025-08-15 19:04:44,123   INFO  eval: epoch=30, batch_iter=200/5770, batch_size=1, iter_cost=0.04s, time_cost: 00:07/03:20, 
+2025-08-15 19:04:45,634   INFO  eval: epoch=30, batch_iter=250/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:08/03:12, 
+2025-08-15 19:04:47,327   INFO  eval: epoch=30, batch_iter=300/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:10/03:09, 
+2025-08-15 19:04:49,005   INFO  eval: epoch=30, batch_iter=350/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:12/03:07, 
+2025-08-15 19:04:50,567   INFO  eval: epoch=30, batch_iter=400/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:13/03:03, 
+2025-08-15 19:04:52,228   INFO  eval: epoch=30, batch_iter=450/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:15/03:00, 
+2025-08-15 19:04:53,965   INFO  eval: epoch=30, batch_iter=500/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:17/02:59, 
+2025-08-15 19:04:55,618   INFO  eval: epoch=30, batch_iter=550/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:18/02:57, 
+2025-08-15 19:04:57,167   INFO  eval: epoch=30, batch_iter=600/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:20/02:54, 
+2025-08-15 19:04:58,773   INFO  eval: epoch=30, batch_iter=650/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:21/02:52, 
+2025-08-15 19:05:00,436   INFO  eval: epoch=30, batch_iter=700/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:23/02:50, 
+2025-08-15 19:05:02,035   INFO  eval: epoch=30, batch_iter=750/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:25/02:48, 
+2025-08-15 19:05:03,613   INFO  eval: epoch=30, batch_iter=800/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:26/02:45, 
+2025-08-15 19:05:05,259   INFO  eval: epoch=30, batch_iter=850/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:28/02:44, 
+2025-08-15 19:05:06,854   INFO  eval: epoch=30, batch_iter=900/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:29/02:41, 
+2025-08-15 19:05:08,487   INFO  eval: epoch=30, batch_iter=950/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:31/02:40, 
+2025-08-15 19:05:10,078   INFO  eval: epoch=30, batch_iter=1000/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:33/02:38, 
+2025-08-15 19:05:11,650   INFO  eval: epoch=30, batch_iter=1050/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:34/02:36, 
+2025-08-15 19:05:13,372   INFO  eval: epoch=30, batch_iter=1100/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:36/02:34, 
+2025-08-15 19:05:15,049   INFO  eval: epoch=30, batch_iter=1150/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:38/02:33, 
+2025-08-15 19:05:16,679   INFO  eval: epoch=30, batch_iter=1200/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:39/02:31, 
+2025-08-15 19:05:18,325   INFO  eval: epoch=30, batch_iter=1250/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:41/02:29, 
+2025-08-15 19:05:19,970   INFO  eval: epoch=30, batch_iter=1300/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:43/02:28, 
+2025-08-15 19:05:21,673   INFO  eval: epoch=30, batch_iter=1350/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:44/02:26, 
+2025-08-15 19:05:23,271   INFO  eval: epoch=30, batch_iter=1400/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:46/02:24, 
+2025-08-15 19:05:24,965   INFO  eval: epoch=30, batch_iter=1450/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:48/02:23, 
+2025-08-15 19:05:26,571   INFO  eval: epoch=30, batch_iter=1500/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:49/02:21, 
+2025-08-15 19:05:28,207   INFO  eval: epoch=30, batch_iter=1550/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:51/02:19, 
+2025-08-15 19:05:29,795   INFO  eval: epoch=30, batch_iter=1600/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:52/02:17, 
+2025-08-15 19:05:31,418   INFO  eval: epoch=30, batch_iter=1650/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:54/02:16, 
+2025-08-15 19:05:33,062   INFO  eval: epoch=30, batch_iter=1700/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:56/02:14, 
+2025-08-15 19:05:34,639   INFO  eval: epoch=30, batch_iter=1750/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:57/02:12, 
+2025-08-15 19:05:36,272   INFO  eval: epoch=30, batch_iter=1800/5770, batch_size=1, iter_cost=0.03s, time_cost: 00:59/02:10, 
+2025-08-15 19:05:37,863   INFO  eval: epoch=30, batch_iter=1850/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:00/02:09, 
+2025-08-15 19:05:39,550   INFO  eval: epoch=30, batch_iter=1900/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:02/02:07, 
+2025-08-15 19:05:41,167   INFO  eval: epoch=30, batch_iter=1950/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:04/02:05, 
+2025-08-15 19:05:42,836   INFO  eval: epoch=30, batch_iter=2000/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:05/02:04, 
+2025-08-15 19:05:44,529   INFO  eval: epoch=30, batch_iter=2050/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:07/02:02, 
+2025-08-15 19:05:46,185   INFO  eval: epoch=30, batch_iter=2100/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:09/02:01, 
+2025-08-15 19:05:47,818   INFO  eval: epoch=30, batch_iter=2150/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:10/01:59, 
+2025-08-15 19:05:49,432   INFO  eval: epoch=30, batch_iter=2200/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:12/01:57, 
+2025-08-15 19:05:51,114   INFO  eval: epoch=30, batch_iter=2250/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:14/01:56, 
+2025-08-15 19:05:52,756   INFO  eval: epoch=30, batch_iter=2300/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:15/01:54, 
+2025-08-15 19:05:54,352   INFO  eval: epoch=30, batch_iter=2350/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:17/01:52, 
+2025-08-15 19:05:55,933   INFO  eval: epoch=30, batch_iter=2400/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:19/01:50, 
+2025-08-15 19:05:57,558   INFO  eval: epoch=30, batch_iter=2450/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:20/01:49, 
+2025-08-15 19:05:59,252   INFO  eval: epoch=30, batch_iter=2500/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:22/01:47, 
+2025-08-15 19:06:00,958   INFO  eval: epoch=30, batch_iter=2550/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:24/01:46, 
+2025-08-15 19:06:02,638   INFO  eval: epoch=30, batch_iter=2600/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:25/01:44, 
+2025-08-15 19:06:04,285   INFO  eval: epoch=30, batch_iter=2650/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:27/01:42, 
+2025-08-15 19:06:05,979   INFO  eval: epoch=30, batch_iter=2700/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:29/01:41, 
+2025-08-15 19:06:07,587   INFO  eval: epoch=30, batch_iter=2750/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:30/01:39, 
+2025-08-15 19:06:09,196   INFO  eval: epoch=30, batch_iter=2800/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:32/01:37, 
+2025-08-15 19:06:10,872   INFO  eval: epoch=30, batch_iter=2850/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:33/01:36, 
+2025-08-15 19:06:12,439   INFO  eval: epoch=30, batch_iter=2900/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:35/01:34, 
+2025-08-15 19:06:14,235   INFO  eval: epoch=30, batch_iter=2950/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:37/01:33, 
+2025-08-15 19:06:16,003   INFO  eval: epoch=30, batch_iter=3000/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:39/01:31, 
+2025-08-15 19:06:17,727   INFO  eval: epoch=30, batch_iter=3050/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:40/01:29, 
+2025-08-15 19:06:19,432   INFO  eval: epoch=30, batch_iter=3100/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:42/01:28, 
+2025-08-15 19:06:21,052   INFO  eval: epoch=30, batch_iter=3150/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:44/01:26, 
+2025-08-15 19:06:22,719   INFO  eval: epoch=30, batch_iter=3200/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:45/01:24, 
+2025-08-15 19:06:24,334   INFO  eval: epoch=30, batch_iter=3250/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:47/01:23, 
+2025-08-15 19:06:26,045   INFO  eval: epoch=30, batch_iter=3300/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:49/01:21, 
+2025-08-15 19:06:27,646   INFO  eval: epoch=30, batch_iter=3350/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:50/01:19, 
+2025-08-15 19:06:29,264   INFO  eval: epoch=30, batch_iter=3400/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:52/01:18, 
+2025-08-15 19:06:30,932   INFO  eval: epoch=30, batch_iter=3450/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:54/01:16, 
+2025-08-15 19:06:32,529   INFO  eval: epoch=30, batch_iter=3500/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:55/01:14, 
+2025-08-15 19:06:34,173   INFO  eval: epoch=30, batch_iter=3550/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:57/01:13, 
+2025-08-15 19:06:35,904   INFO  eval: epoch=30, batch_iter=3600/5770, batch_size=1, iter_cost=0.03s, time_cost: 01:58/01:11, 
+2025-08-15 19:06:37,501   INFO  eval: epoch=30, batch_iter=3650/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:00/01:10, 
+2025-08-15 19:06:39,189   INFO  eval: epoch=30, batch_iter=3700/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:02/01:08, 
+2025-08-15 19:06:40,831   INFO  eval: epoch=30, batch_iter=3750/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:03/01:06, 
+2025-08-15 19:06:42,432   INFO  eval: epoch=30, batch_iter=3800/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:05/01:05, 
+2025-08-15 19:06:44,108   INFO  eval: epoch=30, batch_iter=3850/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:07/01:03, 
+2025-08-15 19:06:45,680   INFO  eval: epoch=30, batch_iter=3900/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:08/01:01, 
+2025-08-15 19:06:47,275   INFO  eval: epoch=30, batch_iter=3950/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:10/01:00, 
+2025-08-15 19:06:48,911   INFO  eval: epoch=30, batch_iter=4000/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:11/00:58, 
+2025-08-15 19:06:50,599   INFO  eval: epoch=30, batch_iter=4050/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:13/00:56, 
+2025-08-15 19:06:52,258   INFO  eval: epoch=30, batch_iter=4100/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:15/00:55, 
+2025-08-15 19:06:53,838   INFO  eval: epoch=30, batch_iter=4150/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:16/00:53, 
+2025-08-15 19:06:55,493   INFO  eval: epoch=30, batch_iter=4200/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:18/00:51, 
+2025-08-15 19:06:57,121   INFO  eval: epoch=30, batch_iter=4250/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:20/00:50, 
+2025-08-15 19:06:58,781   INFO  eval: epoch=30, batch_iter=4300/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:21/00:48, 
+2025-08-15 19:07:00,430   INFO  eval: epoch=30, batch_iter=4350/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:23/00:46, 
+2025-08-15 19:07:02,079   INFO  eval: epoch=30, batch_iter=4400/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:25/00:45, 
+2025-08-15 19:07:03,719   INFO  eval: epoch=30, batch_iter=4450/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:26/00:43, 
+2025-08-15 19:07:05,371   INFO  eval: epoch=30, batch_iter=4500/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:28/00:41, 
+2025-08-15 19:07:06,997   INFO  eval: epoch=30, batch_iter=4550/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:30/00:40, 
+2025-08-15 19:07:08,678   INFO  eval: epoch=30, batch_iter=4600/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:31/00:38, 
+2025-08-15 19:07:10,341   INFO  eval: epoch=30, batch_iter=4650/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:33/00:36, 
+2025-08-15 19:07:12,011   INFO  eval: epoch=30, batch_iter=4700/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:35/00:35, 
+2025-08-15 19:07:13,617   INFO  eval: epoch=30, batch_iter=4750/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:36/00:33, 
+2025-08-15 19:07:15,155   INFO  eval: epoch=30, batch_iter=4800/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:38/00:31, 
+2025-08-15 19:07:16,759   INFO  eval: epoch=30, batch_iter=4850/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:39/00:30, 
+2025-08-15 19:07:18,400   INFO  eval: epoch=30, batch_iter=4900/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:41/00:28, 
+2025-08-15 19:07:20,107   INFO  eval: epoch=30, batch_iter=4950/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:43/00:27, 
+2025-08-15 19:07:21,766   INFO  eval: epoch=30, batch_iter=5000/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:44/00:25, 
+2025-08-15 19:07:23,411   INFO  eval: epoch=30, batch_iter=5050/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:46/00:23, 
+2025-08-15 19:07:25,072   INFO  eval: epoch=30, batch_iter=5100/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:48/00:22, 
+2025-08-15 19:07:26,713   INFO  eval: epoch=30, batch_iter=5150/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:49/00:20, 
+2025-08-15 19:07:28,366   INFO  eval: epoch=30, batch_iter=5200/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:51/00:18, 
+2025-08-15 19:07:30,070   INFO  eval: epoch=30, batch_iter=5250/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:53/00:17, 
+2025-08-15 19:07:31,731   INFO  eval: epoch=30, batch_iter=5300/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:54/00:15, 
+2025-08-15 19:07:33,368   INFO  eval: epoch=30, batch_iter=5350/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:56/00:13, 
+2025-08-15 19:07:35,005   INFO  eval: epoch=30, batch_iter=5400/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:58/00:12, 
+2025-08-15 19:07:36,642   INFO  eval: epoch=30, batch_iter=5450/5770, batch_size=1, iter_cost=0.03s, time_cost: 02:59/00:10, 
+2025-08-15 19:07:38,283   INFO  eval: epoch=30, batch_iter=5500/5770, batch_size=1, iter_cost=0.03s, time_cost: 03:01/00:08, 
+2025-08-15 19:07:39,913   INFO  eval: epoch=30, batch_iter=5550/5770, batch_size=1, iter_cost=0.03s, time_cost: 03:02/00:07, 
+2025-08-15 19:07:41,591   INFO  eval: epoch=30, batch_iter=5600/5770, batch_size=1, iter_cost=0.03s, time_cost: 03:04/00:05, 
+2025-08-15 19:07:43,246   INFO  eval: epoch=30, batch_iter=5650/5770, batch_size=1, iter_cost=0.03s, time_cost: 03:06/00:03, 
+2025-08-15 19:07:44,835   INFO  eval: epoch=30, batch_iter=5700/5770, batch_size=1, iter_cost=0.03s, time_cost: 03:07/00:02, 
+2025-08-15 19:07:46,461   INFO  eval: epoch=30, batch_iter=5750/5770, batch_size=1, iter_cost=0.03s, time_cost: 03:09/00:00, 
+2025-08-15 19:07:47,049   INFO  eval: epoch=30, batch_iter=5769/5770, batch_size=1, iter_cost=0.03s, time_cost: 03:10/00:00, 
+2025-08-15 19:07:47,083   INFO  *************** Performance of EPOCH 30 *****************
+2025-08-15 19:07:47,083   INFO  Generate label finished(sec_per_example: 0.0330 second).
+2025-08-15 19:07:50,856   INFO  
+minADE - TYPE_VEHICLE_5	: 2.6674 
+minADE - TYPE_VEHICLE_9	: 3.8579 
+minADE - TYPE_VEHICLE_15	: 5.5845 
+minADE - TYPE_PEDESTRIAN_5	: 1.5610 
+minADE - TYPE_PEDESTRIAN_9	: 2.2233 
+minADE - TYPE_PEDESTRIAN_15	: 2.9923 
+minADE - TYPE_CYCLIST_5	: 2.7083 
+minADE - TYPE_CYCLIST_9	: 4.0259 
+minADE - TYPE_CYCLIST_15	: 5.6713 
+minFDE - TYPE_VEHICLE_5	: 4.1796 
+minFDE - TYPE_VEHICLE_9	: 6.2284 
+minFDE - TYPE_VEHICLE_15	: 10.5798 
+minFDE - TYPE_PEDESTRIAN_5	: 2.5110 
+minFDE - TYPE_PEDESTRIAN_9	: 3.6304 
+minFDE - TYPE_PEDESTRIAN_15	: 5.1755 
+minFDE - TYPE_CYCLIST_5	: 4.4959 
+minFDE - TYPE_CYCLIST_9	: 6.8765 
+minFDE - TYPE_CYCLIST_15	: 10.4404 
+MissRate - TYPE_VEHICLE_5	: 0.7927 
+MissRate - TYPE_VEHICLE_9	: 0.6582 
+MissRate - TYPE_VEHICLE_15	: 0.6215 
+MissRate - TYPE_PEDESTRIAN_5	: 0.9074 
+MissRate - TYPE_PEDESTRIAN_9	: 0.8613 
+MissRate - TYPE_PEDESTRIAN_15	: 0.8191 
+MissRate - TYPE_CYCLIST_5	: 0.9215 
+MissRate - TYPE_CYCLIST_9	: 0.8761 
+MissRate - TYPE_CYCLIST_15	: 0.8074 
+OverlapRate - TYPE_VEHICLE_5	: 0.0356 
+OverlapRate - TYPE_VEHICLE_9	: 0.0877 
+OverlapRate - TYPE_VEHICLE_15	: 0.1504 
+OverlapRate - TYPE_PEDESTRIAN_5	: 0.0626 
+OverlapRate - TYPE_PEDESTRIAN_9	: 0.0763 
+OverlapRate - TYPE_PEDESTRIAN_15	: 0.0893 
+OverlapRate - TYPE_CYCLIST_5	: 0.0441 
+OverlapRate - TYPE_CYCLIST_9	: 0.0745 
+OverlapRate - TYPE_CYCLIST_15	: 0.1186 
+mAP - TYPE_VEHICLE_5	: 0.0619 
+mAP - TYPE_VEHICLE_9	: 0.0942 
+mAP - TYPE_VEHICLE_15	: 0.1325 
+mAP - TYPE_PEDESTRIAN_5	: 0.0949 
+mAP - TYPE_PEDESTRIAN_9	: 0.0510 
+mAP - TYPE_PEDESTRIAN_15	: 0.0476 
+mAP - TYPE_CYCLIST_5	: 0.0636 
+mAP - TYPE_CYCLIST_9	: 0.1765 
+mAP - TYPE_CYCLIST_15	: 0.1288 
+-------------------------------------------------------------: 0.0000 
+minADE - VEHICLE: 4.0366 
+minADE - PEDESTRIAN: 2.2589 
+minADE - CYCLIST: 4.1352 
+minFDE - VEHICLE: 6.9959 
+minFDE - PEDESTRIAN: 3.7723 
+minFDE - CYCLIST: 7.2709 
+MissRate - VEHICLE: 0.6908 
+MissRate - PEDESTRIAN: 0.8626 
+MissRate - CYCLIST: 0.8683 
+OverlapRate - VEHICLE: 0.0912 
+OverlapRate - PEDESTRIAN: 0.0760 
+OverlapRate - CYCLIST: 0.0791 
+mAP - VEHICLE: 0.0962 
+mAP - PEDESTRIAN: 0.0645 
+mAP - CYCLIST: 0.1230 
+--------------------------------------------------------------: 0.0000 
+minADE: 3.4769 
+minFDE: 6.0130 
+MissRate: 0.8072 
+mAP: 0.0946 
+---------------------------------------------------------------: 0.0000 
+TYPE_UNSET: 0.0000 
+TYPE_VEHICLE: 22037.0000 
+TYPE_PEDESTRIAN: 2700.0000 
+TYPE_CYCLIST: 725.0000 
+TYPE_OTHER: 0.0000 
+-----Note that this evaluation may have marginal differences with the official Waymo evaluation server-----: 0.0000 
+
+       Waymo          mAP       minADE       minFDE     MissRate            
+      VEHICLE      0.0962,      4.0366,      6.9959,      0.6908,            
+   PEDESTRIAN      0.0645,      2.2589,      3.7723,      0.8626,            
+      CYCLIST      0.1230,      4.1352,      7.2709,      0.8683,            
+          Avg      0.0946,      3.4769,      6.0130,      0.8072,            
+
+2025-08-15 19:07:50,856   INFO  Result is save to /home/ioon/MTR/output/waymo/mtr+20_percent_data/default/eval/epoch_30/default
+2025-08-15 19:07:50,856   INFO  ****************Evaluation done.*****************
